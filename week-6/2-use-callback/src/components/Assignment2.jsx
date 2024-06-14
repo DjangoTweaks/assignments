@@ -7,10 +7,15 @@ import React, { useState, useCallback } from 'react';
 export function Assignment2() {
     const [inputText, setInputText] = useState('');
 
-    // Your code starts here
-    function showAlert() {
+    console.log("parent component rerendering"); 
 
-    }
+    // Your code starts here
+    const showAlertFn = useCallback(()=> {
+        console.log("show alert rendering");     
+        alert(inputText); 
+    }, [inputText])
+
+    console.log("alert redefined"); 
     // Your code ends here
 
     return (
@@ -21,7 +26,7 @@ export function Assignment2() {
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Enter some text"
             />
-            <Alert showAlert={showAlert} />
+            <Alert showAlert={showAlertFn} />
         </div>
     );
 };
